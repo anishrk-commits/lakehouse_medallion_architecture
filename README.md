@@ -6,7 +6,7 @@ A production-style **Data Lakehouse** built on **Databricks** using the **Medall
 
 ---
 
-## 📌 Project Overview
+## Project Overview
 
 Modern data platforms don't just move data — they progressively refine it. This project simulates that real-world workflow by building a Lakehouse from the ground up:
 
@@ -18,29 +18,29 @@ The entire pipeline is orchestrated and scheduled as a Databricks Job, so data f
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 Source Systems (ERP + CRM CSVs)
         │
         ▼
-   🥉 BRONZE  →  Raw ingestion, no transformations, source-system prefixed tables
+   BRONZE  →  Raw ingestion, no transformations, source-system prefixed tables
         │
         ▼
-   🥈 SILVER  →  Cleaned, deduplicated, standardized, validated
+   SILVER  →  Cleaned, deduplicated, standardized, validated
         │
         ▼
-   🥇 GOLD    →  Star schema (fact_sales, dim_customers, dim_products)
+   GOLD    →  Star schema (fact_sales, dim_customers, dim_products)
         │
         ▼
-   📊 Analytics & Reporting
+   Analytics & Reporting
 ```
 
 All layers live in **Unity Catalog** as separate schemas (`bronze`, `silver`, `gold`), with raw files staged in a dedicated Bronze volume.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Databricks** (Notebooks, Jobs & Pipelines, Unity Catalog)
 - **PySpark & Spark SQL**
@@ -50,7 +50,7 @@ All layers live in **Unity Catalog** as separate schemas (`bronze`, `silver`, `g
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 ├── bronze/
@@ -76,20 +76,20 @@ All layers live in **Unity Catalog** as separate schemas (`bronze`, `silver`, `g
 
 ---
 
-## 🔄 Data Flow & Layers
+## Data Flow & Layers
 
-### 🥉 Bronze — Raw Ingestion
+### Bronze — Raw Ingestion
 Six source CSV files (ERP + CRM) are ingested as-is into Delta tables, prefixed by source system (`erp_`, `crm_`) for traceability. No cleaning or business logic is applied here — this layer is the system of record for raw history.
 
-### 🥈 Silver — Cleaned & Standardized
+### Silver — Cleaned & Standardized
 Each Bronze table is analyzed for data quality issues — duplicates, inconsistent formatting, invalid dates, non-standardized keys — and resolved through incremental, well-documented transformations. Output tables are given clear, analyst-friendly names and structures.
 
-### 🥇 Gold — Business-Ready Star Schema
+### Gold — Business-Ready Star Schema
 Silver tables are joined and modeled into a dimensional schema (`fact_sales`, `dim_customers`, `dim_products`) optimized for BI tools and analytical queries. Gold tables include Unity Catalog metadata (descriptions, primary/foreign keys) to support self-service analytics.
 
 ---
 
-## ⚙️ Orchestration & Automation
+## Orchestration & Automation
 
 The pipeline is fully automated via a Databricks Job (`loading_bike_data_lakehouse`) with three sequential tasks:
 
@@ -101,7 +101,7 @@ The job is scheduled to run on a recurring basis, with monitoring during the ini
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. Clone this repository into a Databricks Git Folder (Workspace → Create → Git Folder).
 2. Create the `bronze`, `silver`, and `gold` schemas in Unity Catalog.
@@ -113,7 +113,7 @@ The job is scheduled to run on a recurring basis, with monitoring during the ini
 
 ---
 
-## 📈 Roadmap / Future Enhancements
+## Roadmap / Future Enhancements
 
 - Automated data quality checks (row counts, null checks, business rule validation)
 - Reusable transformation functions and config-driven pipelines
@@ -125,12 +125,12 @@ The job is scheduled to run on a recurring basis, with monitoring during the ini
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 This project was built as part of a guided Databricks/Lakehouse bootcamp curriculum. Credit to the original course design and reference materials from [DataWithBaraa](https://github.com/DataWithBaraa/databricks_bootcamp_2026).
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE) — free to use, modify, and share for educational and portfolio purposes.
