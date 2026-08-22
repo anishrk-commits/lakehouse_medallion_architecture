@@ -1,6 +1,6 @@
 # lakehouse_medallion_architecture
 Data Lakehouse on Databricks using the Medallion Architecture (Bronze/Silver/Gold), Unity Catalog, and orchestrated Jobs with bike company ERP/CRM data.
-# 🚲 Bike Data Lakehouse
+# Bike Data Lakehouse
 
 A production-style **Data Lakehouse** built on **Databricks** using the **Medallion Architecture** (Bronze → Silver → Gold). This project takes raw operational data from a fictional bike company's ERP and CRM systems and transforms it end-to-end into clean, trusted, analytics-ready datasets — modeled as a star schema and fully automated with orchestrated jobs.
 
